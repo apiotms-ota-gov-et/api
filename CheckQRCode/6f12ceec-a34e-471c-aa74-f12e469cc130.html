@@ -69,6 +69,24 @@
     <script>
         var urlSearchParams = new URLSearchParams(window.location.search);
         var params = Object.fromEntries(urlSearchParams.entries());
+
+        const getGeneratedDate = (date = new Date()) => {
+            const pad = (n) => String(n).padStart(2, "0");
+
+            return (
+                date.getFullYear() + "-" +
+                pad(date.getMonth() + 1) + "-" +
+                pad(date.getDate()) + " " +
+                pad(date.getHours()) + ":" +
+                pad(date.getMinutes()) + ":" +
+                pad(date.getSeconds())
+            );
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("generatedDate").innerText = getGeneratedDate();
+        });
+        
     </script>
 </head>
 
@@ -107,7 +125,7 @@
 
         <div class="footerContainer">
             <label>Generated on:</label>
-            <label style="margin-left: 5px;">2026-02-03 05:28:03</label>
+            <label id="generatedDate" style="margin-left: 5px;"></label>
         </div>
     </div>
 </body>
