@@ -131,7 +131,7 @@
 
         document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("generatedDate").innerText = getGeneratedDate();
-            const decryptedData = await decrypt(JSON.parse(document.getElementById("hashValue").innerText), params.ID);
+            const decryptedData = JSON.parse(await decrypt(JSON.parse(document.getElementById("hashValue").innerText), params.ID));
             console.log(decryptedData);
             document.getElementById("test").innerText = decryptedData.serialNo;
         });
