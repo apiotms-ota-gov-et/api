@@ -129,15 +129,11 @@
             return dec.decode(decrypted);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("generatedDate").innerText = getGeneratedDate();
-            document.getElementById("test").innerText = decrypt(JSON.parse(document.getElementById("hashValue").innerText), params.ID).then(decrypted => {
-                console.log("Decrypted data:", decrypted);
-                return decrypted.serialNo;
-            }).catch(err => {
-                console.error("Decryption failed:", err);
-                return "Decryption failed";
-            });
+            const decryptedData = await decrypt(JSON.parse(document.getElementById("hashValue").innerText), params.ID);
+            console.log(decryptedData);
+            document.getElementById("test").innerText = decryptedData.serialNo;
         });
 
     </script>
